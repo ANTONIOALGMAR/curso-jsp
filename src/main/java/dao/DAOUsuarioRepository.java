@@ -11,6 +11,7 @@ public class DAOUsuarioRepository {
 	private Connection connection;
 	
 	public DAOUsuarioRepository() {
+		
 		connection = SingleConnectionBanco.getConnection();
 	}
 	
