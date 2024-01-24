@@ -17,30 +17,22 @@ public class DAOLoginRepository {
 
 	public boolean validarAutenticacao(ModelLogin modelLogin) throws Exception {
 
-		System.out.println("Validating authentication...");
+		String sql = "select * from model_login where upper(login) = upper(?) and upper(senha) = upper(?) ";
 
-		try {
-			String sql = "select * from model_login where upper(login) = upper(?) and upper(senha) = upper(?) ";
+		PreparedStatement statement = connection.prepareStatement(sql);
 
-			PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, modelLogin.getLogin());
+		statement.setString(2, modelLogin.getSenha());
 
-			statement.setString(1, modelLogin.getLogin());
-			statement.setString(2, modelLogin.getSenha());
+		ResultSet resultSet = statement.executeQuery();
 
-			ResultSet resultSet = statement.executeQuery();
-
-			if (resultSet.next()) {
-				return true;/* autenticado */
-			}
-
-			return false; /* nao autenticado */
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Erro ao validar autenticação: " + e.getMessage());
-			System.err.println("Estado da conexão: " + (connection == null ? "nula" : "não nula"));
-			throw e;
+		if (resultSet.next()) {
+			System.out.println("Autenticacao ok !");
+			return true;/* autenticado */
+			
 		}
-
+		System.out.println("NAO autenticou !!!!");
+		return false; /* nao autenticado */
 	}
+
 }
