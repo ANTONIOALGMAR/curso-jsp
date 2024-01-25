@@ -44,20 +44,34 @@ public class DAOUsuarioRepository {
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resultado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resultado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setLogin(resultado.getString("login"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setNome(resultado.getString("nome"));
 		}
 		
 		
 		return modelLogin;
 		
 	}
-
+	
+	public boolean validarLogin(String login) throws Exception {
+		String sql = "select count(1) > 0 from model_login where upper(login) = upper('"+login+"');";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		
+		ResultSet resultado =  statement.executeQuery();
+		
+		resultado.next() ;// PARA ENTRAR NOS RESULTADOS DO SQL
+		return resultado.getBoolean("existe");
+		}
+		
+		
+	
+	
 }
