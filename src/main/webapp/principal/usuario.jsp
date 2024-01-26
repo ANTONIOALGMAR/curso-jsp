@@ -118,9 +118,14 @@
 	<script type="text/javascript">
 	
 function criarDelete(){
-	var elementos = document.getElementById("formUser").method = "get";
-	var elementos = document.getElementById("acao").value = "deletar";
-	var elementos = document.getElementById("formUser").submit();
+	
+	if (confirm("Deseja realmente Excluir os dados?")){
+		
+		var elementos = document.getElementById("formUser").method = "get";
+		var elementos = document.getElementById("acao").value = "deletar";
+		var elementos = document.getElementById("formUser").submit();
+	
+	}
 }	
 	
 	
