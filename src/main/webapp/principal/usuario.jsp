@@ -48,6 +48,9 @@
 														<h4 class="sub-title">Cad. Usuário</h4>
 
 														<form class="form-material" action="<%= request.getContextPath()%>/ServletUsuarioController" method="post" id="formUser">
+															
+															<input type="hidden" name="acao" id="acao" value="">
+															
 															<div class="form-group form-default form-static-label" >
 																<input type="text" name="id" id="id" readonly="readonly" value="${modolLogin.id }"
 																	class="form-control"> 
@@ -82,10 +85,12 @@
 															</div>
 															
 
-															<button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
-															<button class="btn btn-success waves-effect waves-light">Salvar</button>
-      														<button class="btn btn-danger waves-effect waves-light">Excluir</button>
+								
       														
+      														
+      														<button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
+															<button class="btn btn-success waves-effect waves-light">Salvar</button>
+      														<button type="button" class="btn btn-danger waves-effect waves-light" onclick="criarDelete();">Excluir</button>
       														
 														</form>
 													</div>
@@ -111,6 +116,14 @@
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	
 	<script type="text/javascript">
+	
+function criarDelete(){
+	var elementos = document.getElementById("formUser").method = "get";
+	var elementos = document.getElementById("acao").value = "deletar";
+	var elementos = document.getElementById("formUser").submit();
+}	
+	
+	
 
 function limparForm() {
     
