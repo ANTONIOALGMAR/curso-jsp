@@ -91,7 +91,7 @@
       														<button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
 															<button class="btn btn-success waves-effect waves-light">Salvar</button>
       														<button type="button" class="btn btn-danger waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button>
-      														
+      														<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
 														</form>
 													</div>
 												</div>
@@ -114,6 +114,33 @@
 
 
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
+	
+	
+	<!-- Modal -->
+<div class="modal fade" id="exampleModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+	
 	
 	<script type="text/javascript">
 	
