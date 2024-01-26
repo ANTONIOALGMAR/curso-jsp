@@ -127,7 +127,28 @@
         </button>
       </div>
       <div class="modal-body">
-        
+       
+       
+       <div class="input-group mb-3">
+       	<input type="text" class="form-control" placeholder="nome" aria-label="nome" id="nomeBusca" aria-describedby="basic-addon-2">
+       	<div class="input-group-aappend">
+       		<button class="btn btn-warning" type="button" onclick="buscarUsuario();">Buscar</button>
+       	</div>
+       </div>
+       
+       <table class="table">
+       	<thead>
+       		<tr>
+       			<th scope="col">ID</th>
+       			<th scope="col">Nome</th>
+       			<th scope="col">Ver</th>
+       			<th scope="col">Handle</th>
+       		</tr>
+       	</thead>
+       	<tbody>
+       		
+       	</tbody>
+       </table>
         
         
       </div>
@@ -143,6 +164,14 @@
 	
 	
 	<script type="text/javascript">
+	
+	function buscarUsuario(){
+		var nomeBusca = document.getElementById('nomeBusca').value;
+		
+		if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ //validando que tem que ter valor pra buscar no banco de dados
+		alert(nomeBusca);	
+		}
+	}
 	
 	
 	function criarDeleteComAjax() {
