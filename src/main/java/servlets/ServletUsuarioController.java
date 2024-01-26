@@ -34,9 +34,21 @@ public class ServletUsuarioController extends HttpServlet {
 				 daoUsuarioRepository.deletarUser(idUser);
 				 
 				 request.setAttribute("msg", "Excluido com sucesso!");
+				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+				 
+				 
+			 }else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarajax")) {
+					 
+					 String idUser = request.getParameter("id");
+					 
+					 daoUsuarioRepository.deletarUser(idUser);
+					 
+					 response.getWriter().write("Excluido com sucesso!!");
+			 }else {
+				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			 }
 			 
-			 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			 
 			 
 			 
 			}catch (Exception e) {
@@ -70,7 +82,12 @@ public class ServletUsuarioController extends HttpServlet {
 			
 			if(daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 				msg =" Ja existe usuario com mesmo login, informe outro login";
-			}else {
+			}else { 
+				if(modelLogin.isNovo()) {
+					msg = "Gravado com sucesso";
+				}else {
+					msg = "Atualizado com sucesso";
+				}
 				modelLogin = daoUsuarioRepository.gravarUsuario(modelLogin);
 				
 			}
