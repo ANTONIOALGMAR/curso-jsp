@@ -150,6 +150,7 @@
 						</div>
 					</div>
 
+
 					<div style="height: 300px; overflow: scroll;">
 						<table class="table" id="tabelaresultados">
 							<thead>
@@ -165,13 +166,11 @@
 						</table>
 					</div>
 
-
 					<nav aria-label="Page navigation example">
 						<ul class="pagination" id="ulPaginacaoUserAjax">
 
 						</ul>
 					</nav>
-
 
 					<span id="totalResultados"></span>
 
@@ -184,11 +183,15 @@
 		</div>
 	</div>
 
-
-
-
-
 	<script type="text/javascript">
+
+function verEditar(id){
+	
+	var urlAction = document.getElementById('formUser').action;
+	
+	window.location.href = urlAction + '?acao=buscarEditar&id='+ id;
+}
+	
 	
 	
 function buscarUsuario() {
@@ -199,64 +202,40 @@ function buscarUsuario() {
 
 		var urlAction = document.getElementById('formUser').action;
 
-			$.ajax({
+		$.ajax({
 
-				method : "get",
-				url : urlAction,
-				data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
-				success : function(response, textStatus, xhr) {
+			method : "get",
+			url : urlAction,
+			data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
+			success : function(response, textStatus, xhr) {
 
-										var json = JSON.parse(response);
+		var json = JSON.parse(response);
 
-										$('#tabelaresultados > tbody > tr')
-												.remove();
-										$("#ulPaginacaoUserAjax > li").remove();
+		$('#tabelaresultados > tbody > tr').remove();
+		$("#ulPaginacaoUserAjax > li").remove();
 
-										for (var p = 0; p < json.length; p++) {
-											$('#tabelaresultados > tbody')
-													.append(
-															'<tr> <td>'
-																	+ json[p].id
-																	+ '</td> <td> '
-																	+ json[p].nome
-																	+ '</td> <td><button onclick="verEditar('
-																	+ json[p].id
-																	+ ')" type="button" class="btn btn-info">Ver</button></td></tr>');
-										}
+		for (var p = 0; p < json.length; p++) {
+			$('#tabelaresultados > tbody').append('<tr> <td>' + json[p].id + '</td> <td> ' + json[p].nome + '</td> <td><button onclick="verEditar(' + json[p].id + ')" type="button" class="btn btn-info">Ver</button></td></tr>');
+		}
 
-										document
-												.getElementById('totalResultados').textContent = 'Resultados: '
-												+ json.length;
+		document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
 
-										var totalPagina = xhr
-												.getResponseHeader("totalPagina");
+		var totalPagina = xhr.getResponseHeader("totalPagina");
 
-										for (var p = 0; p < totalPagina; p++) {
+		for (var p = 0; p < totalPagina; p++) {
 
-											var url = 'nomeBusca='
-													+ nomeBusca
-													+ '&acao=buscarUserAjaxPage&pagina='
-													+ (p * 5);
+			var url = 'nomeBusca=' + nomeBusca + '&acao=buscarUserAjaxPage&pagina=' + (p * 5);
 
-											$("#ulPaginacaoUserAjax")
-													.append(
-															'<li class="page-item"><a class="page-link" href="#" onclick="buscaUserPagAjax(\''
-																	+ url
-																	+ '\')">'
-																	+ (p + 1)
-																	+ '</a></li>');
+			$("#ulPaginacaoUserAjax").append('<li class="page-item"><a class="page-link" href="#" onclick="buscaUserPagAjax(\'' + url + '\')">' + (p + 1) + '</a></li>');
 
-										}
+		}
 
-									}
+		}
 
-								}).fail(
-								function(xhr, status, errorThrown) {
-									alert('Erro ao buscar usuário por nome: '
-											+ xhr.responseText);
-								});
+		}).fail(function(xhr, status, errorThrown) { alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
+		});
 
-			}
+		}
 
 		}
 
@@ -282,11 +261,12 @@ function buscarUsuario() {
 						function(xhr, status, errorThrown) {
 							alert('Erro ao deletar usuário por id: '
 									+ xhr.responseText);
-						});
+				});
 
 			}
 
 		}
+		
 
 		function criarDelete() {
 
