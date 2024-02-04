@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,6 +109,31 @@
 											</div>
 										</div>
 										<span>${msg}</span>
+										
+
+										<div style="height: 300px; overflow: scroll;">
+											<table class="table" id="tabelaresultadosview">
+												<thead>
+													<tr>
+														<th scope="col">ID</th>
+														<th scope="col">Nome</th>
+														<th scope="col">Ver</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items='${modelLogins }' var='ml'>
+														<tr>
+														<td><c:out value="${ml.id }"></c:out> </td>
+														<td><c:out value="${ml.nome }"></c:out> </td>
+														<td><a class = "btn btn-success" href="<%= request.getContextPath() %>/UsuarioController?acao=buscarEditar&id=${ml.id }">Ver</a></td>
+														
+														
+														</tr>
+													
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
 
 
 									</div>
@@ -187,9 +214,9 @@
 
 function verEditar(id){
 	
-	var urlAction = document.getElementById('formUser').action;
+	var urlAction = document.getElementById('formUser').action; // endereco inteiro do nosso projeto/ do nosso servidor / nossa servlet
 	
-	window.location.href = urlAction + '?acao=buscarEditar&id='+ id;
+	window.location.href = urlAction + '?acao=buscarEditar&id='+ id;  // redirecionando o id 
 }
 	
 	
