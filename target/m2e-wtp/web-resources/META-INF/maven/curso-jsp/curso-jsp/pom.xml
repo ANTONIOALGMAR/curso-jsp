@@ -24,11 +24,7 @@
 		</dependency>
 		
 		
-		<dependency>
-			<groupId>pos-java-jdbc</groupId>
-			<artifactId>pos-java-jdbc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
