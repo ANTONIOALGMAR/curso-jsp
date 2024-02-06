@@ -59,6 +59,15 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.model_login
     OWNER to postgres;
+
+===========================================================================
+
+alter table public.model_login ADD COLUMN senha character varying(200);
+
+===========================================================================
+
+alter table public.model_login add column perfil character varying(200);
+===========================================================================
 	
 	
 	
