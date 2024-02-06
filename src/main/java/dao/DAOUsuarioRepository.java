@@ -119,15 +119,16 @@ public class DAOUsuarioRepository {
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resultado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resultado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setLogin(resultado.getString("login"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setUseradmin(resultado.getBoolean("useradmin"));
 		}
 		
 		
@@ -153,6 +154,7 @@ public class DAOUsuarioRepository {
 			modelLogin.setLogin(resutlado.getString("login"));
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
 		}
 		
 		
