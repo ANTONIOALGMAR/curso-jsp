@@ -10,10 +10,19 @@ public class ModelLogin implements Serializable {
 	private String email;
 	private String login;
 	private String senha;
+	private String sexo;
 	
 	private boolean useradmin;
 	
 	private String perfil;
+	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
+	public String getSexo() {
+		return sexo;
+	}
 	
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;

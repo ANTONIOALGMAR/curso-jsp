@@ -91,31 +91,33 @@
 																ModelLogin modelLogin = (ModelLogin) request.getAttribute("modolLogin");
 																
 																
-																if (modelLogin != null && modelLogin.getPerfil().equals("ADMIN")) {
-																		out.print(" ");
-																		 out.print("selected=\"selected\"");
-																		out.print(" ");
-																} %> >Admin</option>
+																if (modelLogin != null && "ADMIN".equals(modelLogin.getPerfil())) {
+																    out.print(" ");
+																    out.print("selected=\"selected\"");
+																    out.print(" ");
+																}
+																 %> >Admin</option>
 																
 																<option value="SECRETARIA" <% 
 																		
 																   modelLogin = (ModelLogin) request.getAttribute("modolLogin");
 																		
-																	if (modelLogin != null && modelLogin.getPerfil().equals("SECRETARIA")) {
-																		out.print(" ");
-																		 out.print("selected=\"selected\"");
-																		out.print(" ");
-																	
-																} %>>Secretária</option>
+																if (modelLogin != null && "SECRETARIA".equals(modelLogin.getPerfil())) {
+																    out.print(" ");
+																    out.print("selected=\"selected\"");
+																    out.print(" ");
+																}
+																 %>>Secretária</option>
 																
 																<option value="AUXILIAR" <% 
 																	modelLogin = (ModelLogin) request.getAttribute("modolLogin");
 																				
-																	if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")) {
-																		out.print(" ");
-																		 out.print("selected=\"selected\"");
-																		out.print(" ");
-																} %>>Auxiliar</option>
+																if (modelLogin != null && "AUXILIAR".equals(modelLogin.getPerfil())) {
+																    out.print(" ");
+																    out.print("selected=\"selected\"");
+																    out.print(" ");
+																}
+																 %>>Auxiliar</option>
 
 																</select>
 																<span class="form-bar"></span> 
@@ -138,10 +140,32 @@
 																	class="float-label">Password</label>
 															</div>
 
+															<div class="form-group form-default form-static-label">
+															<input type="radio" name="sexo" checked="checked" value="MASCULINO" <%
+                                                            
+                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                                 
+                                                             if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")) {
+																	out.print(" ");
+																	 out.print("checked=\"checked\"");
+																	out.print(" ");
+															}
+                                                             
+                                                             %>>Masculino
+															
+															<input type="radio" name="sexo" value="FEMININO" <%
+                                                            
+                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                                 
+                                                             if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
+																	out.print(" ");
+																	 out.print("checked=\"checked\"");
+																	out.print(" ");
+															}
+                                                             
+                                                             %>>Feminino
 
-
-
-
+															</div>
 															<button type="button"
 																class="btn btn-primary waves-effect waves-light"
 																onclick="limparForm();">Novo</button>

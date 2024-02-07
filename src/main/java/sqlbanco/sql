@@ -67,7 +67,14 @@ alter table public.model_login ADD COLUMN senha character varying(200);
 ===========================================================================
 
 alter table public.model_login add column perfil character varying(200);
+
 ===========================================================================
+
+alter table public.model_login ADD COLUMN sexo character varying(200);
+
+===========================================================================
+
+UPDATE model_login set perfil = "AUXILIAR" WHERE perfil is null;
 	
 	
 	
