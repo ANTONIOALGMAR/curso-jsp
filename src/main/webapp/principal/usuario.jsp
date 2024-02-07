@@ -54,7 +54,7 @@
 													<div class="card-block">
 														<h4 class="sub-title">Cad. Usuário</h4>
 
-														<form class="form-material"
+														<form class="form-material" enctype="multipart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
 															method="post" id="formUser">
 
@@ -66,6 +66,16 @@
 																<span class="form-bar"></span> <label
 																	class="float-label">ID:</label>
 															</div>
+															
+															<div class="form-group form-default input-group mb-4">
+															
+															<div class= "input-group-preppend">
+																<img alt="Imagem User" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwM1vMjAG6N2klFgiXsx79o1ChjvbzHfvhdAfvuf9G_x2mqjoINotzGEq6WgZnnkpnA6s&usqp=CAU" width="90px">
+															</div>
+															<input type="file" class="form-control-file" style="margin-top:15px; margin-left:5px;">
+															
+															</div>
+															
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
 																	class="form-control" required="required"
