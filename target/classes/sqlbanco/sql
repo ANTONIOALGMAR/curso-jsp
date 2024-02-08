@@ -85,6 +85,16 @@ alter table model_login add column fotoUser text;
 alter table model_login add column extensaoFotoUser character varying(50);
 
 ===========================================================================
+
+-- Altera o tipo da coluna para character varying(10)
+
+ALTER TABLE model_login
+ALTER COLUMN extensaoFotoUser TYPE character varying(10);
+
+-- Opcional: Atualiza os valores existentes se necessário
+-- UPDATE model_login SET extensaoFotoUser = LEFT(extensaoFotoUser, 10) WHERE LENGTH(extensaoFotoUser) > 10;
+
+===========================================================================
 	
 	
 	

@@ -16,26 +16,26 @@ public class ModelLogin implements Serializable {
 	
 	private String perfil;
 	
-	private String fotoUser;
+	private String fotouser;
 	
-	private String extensaoFotoUser;
+	private String extensaofotouser;
 	
 	
 	
 	public String getFotoUser() {
-		return fotoUser;
+		return fotouser;
 	}
 
 	public void setFotoUser(String fotoUser) {
-		this.fotoUser = fotoUser;
+		this.fotouser = fotoUser;
 	}
 
 	public String getExtensaoFotoUser() {
-		return extensaoFotoUser;
+		return extensaofotouser;
 	}
 
 	public void setExtensaoFotoUser(String extensaoFotoUser) {
-		this.extensaoFotoUser = extensaoFotoUser;
+		this.extensaofotouser = extensaoFotoUser;
 	}
 
 	public void setSexo(String sexo) {
