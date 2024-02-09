@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import model.ModelLogin;
 import org.apache.commons.io.IOUtils;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -143,10 +144,13 @@ public class ServletUsuarioController extends servletGenercUtil {
 			
 			
 			if (ServletFileUpload.isMultipartContent(request)) {
+				
 				Part part = request.getPart("fileFoto");  // PEGA FOTO DA TELA
 				byte[] foto = IOUtils.toByteArray(part.getInputStream()); // CONVERTE IMAGEM PARA BYTE
-				String imagemBase64 = new Base64().encodeBase64String(foto);  // CONVERTE PARA STRING
-				System.out.println("imagemBase64");
+				String imagemBase64 = "data:image/" + part.getContentType().split("\\/")[1] + ";base64," + new Base64().encodeBase64String(foto);  // CONVERTE PARA STRING
+				
+				modelLogin.setFotoUser(imagemBase64);
+				modelLogin.setExtensaoFotoUser(part.getContentType().split("\\/")[1]);
 			}
 			
 			if(daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
