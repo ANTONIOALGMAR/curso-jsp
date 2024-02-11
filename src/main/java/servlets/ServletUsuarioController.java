@@ -77,7 +77,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			 else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
 				 String id = request.getParameter("id");
 				 
-				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioId(id, super.getUserLogado(request));
+				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuario(id, super.getUserLogado(request));
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 				 request.setAttribute("modelLogins", modelLogins);
@@ -104,7 +104,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 				 String idUser = request.getParameter("id");
 				 
-				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioId(idUser, super.getUserLogado(request));
+				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuario(idUser, super.getUserLogado(request));
 				 if (modelLogin.getFotouser() != null && !modelLogin.getFotouser().isEmpty()) {
 					 
 					 response.setHeader("Content-Disposition", "attachment;filename=arquivo." + modelLogin.getExtensaoFotouser());
@@ -112,10 +112,21 @@ public class ServletUsuarioController extends servletGenercUtil {
 					 
 				 }
 				 
+				 else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("paginar")){
+					 Integer offset = Integer.parseInt(request.getParameter("pagina"));
+					 
+					 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioListPaginada(this.getUserLogado(request), offset);
+					 
+					 request.setAttribute("modelLogins", modelLogins);
+					 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
+					 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+				 }
+				 
 			 }
 			 else {
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
+				 
 				 request.setAttribute("modelLogins", modelLogins);
 				 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);

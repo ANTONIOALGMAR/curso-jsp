@@ -261,6 +261,7 @@
 										</div>
 										<span>${msg}</span>
 										
+										
 
 										<div style="height: 300px; overflow: scroll;">
 											<table class="table" id="tabelaresultadosview">
@@ -285,6 +286,27 @@
 												</tbody>
 											</table>
 										</div>
+										
+										
+										<nav aria-label="page navigation example">
+										  <ul class= "pagination">
+										  <%
+										  		int totalPagina = (int) request.getAttribute("totalPagina");
+										  
+										  		for (int p=0; p < totalPagina; p++) {
+										  			String url = request.getContextPath()+ "/UsuarioController?acao=paginar&pagina=" + (p * 5);
+										  			out.print("<li class=\"page-item\"><a class=\"page-link\" href=\""+url+"\">"+(p +1)+"</a></li>") ;
+										  		}
+										  %>
+										  
+										  
+										  	<li class="page-item-"><a class="page-link" href="#">Previews</a></li>
+										  	<li class="page-item-"><a class="page-link" href="#">1</a></li>
+										  	<li class="page-item-"><a class="page-link" href="#">2</a></li>
+										  	<li class="page-item-"><a class="page-link" href="#">3</a></li>
+										  	<li class="page-item-"><a class="page-link" href="#">Next</a></li>
+										  </ul>
+										</nav>
 
 
 									</div>
