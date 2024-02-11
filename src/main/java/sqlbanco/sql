@@ -86,6 +86,15 @@ alter table model_login add column extensaoFotoUser character varying(50);
 
 ===========================================================================
 
+alter table public.model_login ADD COLUMN cep character varying(250);
+alter table public.model_login ADD COLUMN logradouro character varying(250);
+alter table public.model_login ADD COLUMN bairro character varying(250);
+alter table public.model_login ADD COLUMN localidade character varying(250);
+alter table public.model_login ADD COLUMN uf character varying(250);
+alter table public.model_login ADD COLUMN numero character varying(250);
+
+============================================================================
+
 -- Altera o tipo da coluna para character varying(10)
 
 ALTER TABLE model_login
