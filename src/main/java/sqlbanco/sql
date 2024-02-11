@@ -2,6 +2,8 @@
 LIST OF COMMAND SQL
 ================================
 
+-- CRIANDO BANCO DE DADOS
+
 CREATE DATABASE "curso-jsp"
     WITH
     OWNER = postgres
@@ -15,6 +17,7 @@ CREATE DATABASE "curso-jsp"
 
 
 ======================================================================
+-- CRIAR TABELA
 
 CREATE TABLE IF NOT EXISTS public.model_login
 (
@@ -30,7 +33,7 @@ ALTER TABLE IF EXISTS public.model_login
     
     
 ========================================================================   
-    
+  -- INSERCAO DE DADOS NA TABELA LOGIN, SENHA 
     
 INSERT INTO public.model_login(
 	login, senha)
@@ -61,30 +64,37 @@ ALTER TABLE IF EXISTS public.model_login
     OWNER to postgres;
 
 ===========================================================================
+-- ADICIONA COLUNA SENHA
 
 alter table public.model_login ADD COLUMN senha character varying(200);
 
 ===========================================================================
+-- ADICIONA COLUNA PERFIL
 
 alter table public.model_login add column perfil character varying(200);
 
 ===========================================================================
+-- ADICIONA COLUNA SEXO
 
 alter table public.model_login ADD COLUMN sexo character varying(200);
 
 ===========================================================================
+-- ATUALIZA PERFIL
 
 UPDATE model_login set perfil = "AUXILIAR" WHERE perfil is null;
 
 ===========================================================================
+-- ADICIONA FOTOUSER
 
 alter table model_login add column fotoUser text;
 
 ===========================================================================
+-- ADICIONA COLUNA extensaoFotoUser
 
 alter table model_login add column extensaoFotoUser character varying(50);
 
 ===========================================================================
+-- ADICIONA VARIAS COLUNAS
 
 alter table public.model_login ADD COLUMN cep character varying(250);
 alter table public.model_login ADD COLUMN logradouro character varying(250);
@@ -95,7 +105,7 @@ alter table public.model_login ADD COLUMN numero character varying(250);
 
 ============================================================================
 
--- Altera o tipo da coluna para character varying(10)
+-- ALTERA O TIPO DA COLUNA PARA CHARACTER VARYING(10)
 
 ALTER TABLE model_login
 ALTER COLUMN extensaoFotoUser TYPE character varying(10);
@@ -104,6 +114,9 @@ ALTER COLUMN extensaoFotoUser TYPE character varying(10);
 -- UPDATE model_login SET extensaoFotoUser = LEFT(extensaoFotoUser, 10) WHERE LENGTH(extensaoFotoUser) > 10;
 
 ===========================================================================
-	
+
+-- LIMITAR A PAGINACAO
+
+select * from model_login where usuario_id =1 order by nome offset 0 limit 5;	
 	
 	
