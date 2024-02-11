@@ -70,8 +70,18 @@
 															
 															<div class="form-group form-default input-group mb-4">
 															
-																<div class= "input-group-preppend">
-																	<img alt="Imagem User" id="fotoembase64" src="" width="110px">
+																<div class= "input-group-prepend">
+																
+																	<c:if test="${modolLogin.fotouser != '' }">
+																	<img alt="Imagem User" id="fotoembase64" src="${modolLogin.fotouser }" width="110px">
+																	</c:if>
+																	
+																	<c:if test="${modolLogin.fotouser == '' || modolLogin.fotouser == null }">
+																		<a href="<%= request.getContextPath() %>/ServletUsuarioController?acao=downloadFoto&id=${modolLogin.id }">
+																		<img alt="Imagem User" id="fotoembase64" src="assets/images/avatar-1.jpg" width="110px">
+																		</a>
+																	</c:if>
+																	
 																</div>
 																<div>
 																	<input type="file" 
@@ -318,7 +328,7 @@ function visualizarImg (fotoembase64, fileFoto){
 	if (fileUser){
 		reader.readAsDataURL(fileUser); // PREVIEW DA IMAGEM
 	}else{
-		preview.src = "";
+		preview.src = "assets/images/avatar-1.jpg";
 	}
 	
 }	

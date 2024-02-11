@@ -22,19 +22,19 @@ public class ModelLogin implements Serializable {
 	
 	
 	
-	public String getFotoUser() {
+	public String getFotouser() {
 		return fotouser;
 	}
 
-	public void setFotoUser(String fotoUser) {
+	public void setFotouser(String fotoUser) {
 		this.fotouser = fotoUser;
 	}
 
-	public String getExtensaoFotoUser() {
+	public String getExtensaoFotouser() {
 		return extensaofotouser;
 	}
 
-	public void setExtensaoFotoUser(String extensaoFotoUser) {
+	public void setExtensaoFotouser(String extensaoFotoUser) {
 		this.extensaofotouser = extensaoFotoUser;
 	}
 

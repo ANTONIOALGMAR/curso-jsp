@@ -99,11 +99,25 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 			 }
 			  
+			 else if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("downloadFoto")){
+				 
+				 String idUser = request.getParameter("id");
+				 
+				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioId(idUser, super.getUserLogado(request));
+				 if (modelLogin.getFotouser() != null && !modelLogin.getFotouser().isEmpty()) {
+					 
+					 response.setHeader("Content-Disposition", "attachment;filename=arquivo." + modelLogin.getExtensaoFotouser());
+					 response.getOutputStream().write(new Base64().decodeBase64(modelLogin.getFotouser().split("\\,")[1]));
+					 
+				 }
+				 
+			 }
 			 else {
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 				 request.setAttribute("modelLogins", modelLogins);
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+				 
 			 }
 			 
 			 
@@ -146,11 +160,13 @@ public class ServletUsuarioController extends servletGenercUtil {
 			if (ServletFileUpload.isMultipartContent(request)) {
 				
 				Part part = request.getPart("fileFoto");  // PEGA FOTO DA TELA
+				if (part.getSize() > 0) {
 				byte[] foto = IOUtils.toByteArray(part.getInputStream()); // CONVERTE IMAGEM PARA BYTE
 				String imagemBase64 = "data:image/" + part.getContentType().split("\\/")[1] + ";base64," + new Base64().encodeBase64String(foto);  // CONVERTE PARA STRING
 				
-				modelLogin.setFotoUser(imagemBase64);
-				modelLogin.setExtensaoFotoUser(part.getContentType().split("\\/")[1]);
+				modelLogin.setFotouser(imagemBase64);
+				modelLogin.setExtensaoFotouser(part.getContentType().split("\\/")[1]);
+				}
 			}
 			
 			if(daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
