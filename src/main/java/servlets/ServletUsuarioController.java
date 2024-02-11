@@ -46,6 +46,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 request.setAttribute("modelLogins", modelLogins);
 				 
 				 request.setAttribute("msg", "Excluido com sucesso!");
+				 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 				 
 				 
@@ -83,7 +84,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 				 request.setAttribute("msg", "Usuario em edicao");
 				 request.setAttribute("modolLogin", modelLogin);  // SETA O OBJETO
-
+				 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response); // REDIRECIONA
 				 
 				 
@@ -94,7 +95,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 				 request.setAttribute("msg", "Usuarios carregados");
 				 request.setAttribute("modelLogins", modelLogins);  // SETA O OBJETO
-
+				 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response); // REDIRECIONA
 				 
 			 }
@@ -116,6 +117,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 				 request.setAttribute("modelLogins", modelLogins);
+				 request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 				 
 			 }
@@ -201,7 +203,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			
 			request.setAttribute("msg", msg);
 			request.setAttribute("modolLogin", modelLogin);
-
+			request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 
 		} catch (Exception e) {

@@ -133,6 +133,29 @@ public class DAOUsuarioRepository {
 		return retorno;
 	}
 	
+	public int totalPagina(Long userLogado) throws Exception{
+		
+		String sql = "select count(1) as total from model_login where usuario_id= 1 " + userLogado;
+		PreparedStatement statement = connection.prepareStatement(sql);
+		
+
+		ResultSet resultado = statement.executeQuery();
+		
+		Double cadastros = resultado.getDouble("total");
+		
+		Double porpagina = 5.0;
+		
+		Double pagina = cadastros / porpagina;
+		
+		Double resto = pagina % 2;
+		
+		if(resto > 0) {
+			pagina++;
+		}
+		return pagina.intValue();
+		
+	}
+	
 	
 	public List<ModelLogin> consultaUsuarioList(Long userLogado) throws Exception{
 		
