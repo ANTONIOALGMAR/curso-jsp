@@ -55,14 +55,14 @@
 														<h4 class="sub-title">Cad. Usuário</h4>
 
 														<form class="form-material" enctype="multipart/form-data"
-															action="<%=request.getContextPath()%>/ServletUsuarioController"
+															action="<%=request.getContextPath()%>/UsuarioController"
 															method="post" id="formUser">
 
 															<input type="hidden" name="acao" id="acao" value="">
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id" readonly="readonly"
-																	value="${modolLogin.id }" class="form-control">
+																	value="${modelLogin.id }" class="form-control">
 																<span class="form-bar"></span> <label
 																	class="float-label">ID:</label>
 															</div>
@@ -72,13 +72,13 @@
 															
 																<div class= "input-group-prepend">
 																
-																	<c:if test="${modolLogin.fotouser != '' && modolLogin != null}">
-																		<a href="<%= request.getContextPath()%>/UsuarioController?acao=downloadFoto&id=${modolLogin.id }">
-																			<img alt="Imagem User" id="fotoembase64" src="${modolLogin.fotouser }" width="110px">
+																	<c:if test="${modelLogin.fotouser != '' && modelLogin != null}">
+																		<a href="<%= request.getContextPath()%>/UsuarioController?acao=downloadFoto&id=${modelLogin.id }">
+																			<img alt="Imagem User" id="fotoembase64" src="${modelLogin.fotouser }" width="110px">
 																		</a>
 																	</c:if>
 																	
-																	<c:if test="${modolLogin.fotouser == '' || modolLogin.fotouser == null }">
+																	<c:if test="${modelLogin.fotouser == '' || modelLogin.fotouser == null }">
 																		<img alt="Imagem User" id="fotoembase64" src="assets/images/avatar-1.jpg" width="110px">
 																	</c:if>
 																	
@@ -99,13 +99,13 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="nome" id="nome"
 																	class="form-control" required="required"
-																	value="${modolLogin.nome }"> <span
+																	value="${modelLogin.nome }"> <span
 																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="email" name="email" id="email"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.email }">
+																	autocomplete="off" value="${modelLogin.email }">
 																<span class="form-bar"></span> <label
 																	class="float-label">E-mail:</label>
 															</div>
@@ -118,7 +118,7 @@
 																<option value="ADMIN" <% 
 																
 																
-																ModelLogin modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																ModelLogin modelLogin = (ModelLogin) request.getAttribute("modelLogin");
 																
 																
 																if (modelLogin != null && "ADMIN".equals(modelLogin.getPerfil())) {
@@ -130,7 +130,7 @@
 																
 																<option value="SECRETARIA" <% 
 																		
-																   modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																   modelLogin = (ModelLogin) request.getAttribute("modelLogin");
 																		
 																if (modelLogin != null && "SECRETARIA".equals(modelLogin.getPerfil())) {
 																    out.print(" ");
@@ -140,7 +140,7 @@
 																 %>>Secretária</option>
 																
 																<option value="AUXILIAR" <% 
-																	modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																	modelLogin = (ModelLogin) request.getAttribute("modelLogin");
 																				
 																if (modelLogin != null && "AUXILIAR".equals(modelLogin.getPerfil())) {
 																    out.print(" ");
@@ -158,7 +158,7 @@
 															<div class="form-group form-default form-static-label">
 																<input onblur="pesquisarCep();" type="text" name="cep" id="cep"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.cep }">
+																	autocomplete="off" value="${modelLogin.cep }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Cep</label>
 															</div>	
@@ -166,7 +166,7 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="logradouro" id="logradouro"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.logradouro }">
+																	autocomplete="off" value="${modelLogin.logradouro }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Logradouro</label>
 															</div>
@@ -174,7 +174,7 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="numero" id="numero"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.numero }">
+																	autocomplete="off" value="${modelLogin.numero }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Numero</label>
 															</div>
@@ -182,7 +182,7 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="bairro" id="bairro"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.bairro }">
+																	autocomplete="off" value="${modelLogin.bairro }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Bairro</label>
 															</div>
@@ -190,7 +190,7 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="localidade" id="localidade"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.localidade }">
+																	autocomplete="off" value="${modelLogin.localidade }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Localidade</label>
 															</div>
@@ -198,7 +198,7 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="uf" id="uf"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.uf}">
+																	autocomplete="off" value="${modelLogin.uf}">
 																<span class="form-bar"></span> <label
 																	class="float-label">Estado</label>
 															</div>
@@ -207,14 +207,14 @@
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.login }">
+																	autocomplete="off" value="${modelLogin.login }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Login</label>
 															</div>
 															<div class="form-group form-default form-static-label">
 																<input type="password" name="senha" id="senha"
 																	class="form-control" required="required"
-																	autocomplete="off" value="${modolLogin.senha }">
+																	autocomplete="off" value="${modelLogin.senha }">
 																<span class="form-bar"></span> <label
 																	class="float-label">Password</label>
 															</div>
@@ -222,9 +222,9 @@
 															<div class="form-group form-default form-static-label">
 															<input type="radio" name="sexo" checked="checked" value="MASCULINO" <%
                                                             
-                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                             modelLogin = (ModelLogin) request.getAttribute("modelLogin");
                                                                  
-                                                             if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")) {
+															if (modelLogin != null && "MASCULINO".equals(modelLogin.getSexo())) {
 																	out.print(" ");
 																	 out.print("checked=\"checked\"");
 																	out.print(" ");
@@ -234,9 +234,9 @@
 															
 															<input type="radio" name="sexo" value="FEMININO" <%
                                                             
-                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                             modelLogin = (ModelLogin) request.getAttribute("modelLogin");
                                                                  
-                                                             if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
+															if (modelLogin != null && "FEMININO".equals(modelLogin.getSexo())) {
 																	out.print(" ");
 																	 out.print("checked=\"checked\"");
 																	out.print(" ");
