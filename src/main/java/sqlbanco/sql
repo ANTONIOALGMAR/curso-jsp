@@ -114,6 +114,12 @@ ALTER COLUMN extensaoFotoUser TYPE character varying(10);
 -- UPDATE model_login SET extensaoFotoUser = LEFT(extensaoFotoUser, 10) WHERE LENGTH(extensaoFotoUser) > 10;
 
 ===========================================================================
+-- ALTERA O NOME DA TABELA
+
+ALTER TABLE model_login RENAME COLUMN foto TO fotouser;
+
+
+===========================================================================
 
 -- LIMITAR A PAGINACAO
 

@@ -71,6 +71,8 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 
 				 String json = mapper.writeValueAsString(dadosJsonUser);
 				 
+				 response.addHeader("totalPagina", ""+ daoUsuarioRepository.consultaUsuarioListTotalPaginaPaginacao(nomeBusca, super.getUserLogado(request)));
+				 
 				 response.getWriter().write(json);
 				 
 			 }

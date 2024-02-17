@@ -10,13 +10,15 @@
                       <div class="pcoded-inner-navbar main-menu">
                           <div class="">
                               <div class="main-menu-header">
-                              	<c:if test="${imagemUser != '' && imagemUser != null }">
-                                  <img class="img-80 img-radius" src="${imagemUser }" alt="User-Profile-Image">
-                              	</c:if>
-                              	
-                              	<c:if test="${imagemUser == '' || imagemUser == null }">
-                                  <img class="img-80 img-radius" src="<%= request.getContextPath() %>assets/images/avatar-4.jpg" alt="User-Profile-Image">
-                              	</c:if>
+                              
+                              	<c:if test="${imagemUser != '' && imagemUser != null}">
+									
+									<img class="img-80 img-radius" src="${imagemUser}" alt="User-Profile-Image">
+								</c:if>
+																	
+								<c:if test="${imagemUser == '' || imagemUser == null }">
+									<img class="Img-80 img-radius" src="<%= request.getContextPath() %>/assets/images/avatar-1.jpg" alt="User-Profile-Image">
+								</c:if>
                               	
                               	
                               	
