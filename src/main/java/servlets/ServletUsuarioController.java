@@ -77,7 +77,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			 else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
 				 String id = request.getParameter("id");
 				 
-				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuario(id, super.getUserLogado(request));
+				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(id, super.getUserLogado(request));
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 				 request.setAttribute("modelLogins", modelLogins);
