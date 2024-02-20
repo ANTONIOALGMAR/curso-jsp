@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -167,6 +169,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			String bairro = request.getParameter("bairro");
 			String localidade = request.getParameter("localidade");
 			String uf = request.getParameter("uf");
+			String dataNascimento = request.getParameter("dataNascimento");
 
 			ModelLogin modelLogin = new ModelLogin();
 
@@ -184,6 +187,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			modelLogin.setBairro(bairro);
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
+			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("dd-mm-yyyy").parse(dataNascimento).getTime()));
 			
 			
 			if (ServletFileUpload.isMultipartContent(request)) {
