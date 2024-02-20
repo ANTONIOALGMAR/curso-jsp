@@ -136,7 +136,7 @@ select count (1) from model_login where usuario_id = 1;
 create sequence public.telefone_seq
 increment 1
 minvalue 1
-maxvalue 9
+maxvalue 9223372036854775807
 start 1
 cache 1;
 
@@ -156,9 +156,40 @@ constraint usuario_cad_fk foreign key (usuario_cad_id) references model_login (i
 )
 
 ==============================================================================
+-- PARA FAZER ALTERACOES NA SEQUENCIA TELEFONE SE PRECISAR
 
 
+-- Alterar o incremento da sequência para 2
+ALTER SEQUENCE public.telefone_seq INCREMENT 2;
 
+-- Alterar o valor mínimo da sequência
+ALTER SEQUENCE public.telefone_seq MINVALUE 10;
+
+-- Alterar o valor máximo da sequência
+ALTER SEQUENCE public.telefone_seq MAXVALUE 9223372036854775807;
+
+-- Alterar o valor inicial da sequência
+ALTER SEQUENCE public.telefone_seq RESTART WITH 5;
+
+-- Alterar o tamanho do cache da sequência
+ALTER SEQUENCE public.telefone_seq CACHE 5;
+
+==============================================================================
+-- CRIAR TABELA TELEFONE 
+
+
+CREATE TABLE telefone (
+id integer not null default nextval('telefone_seq'::regclass),
+numero character varying(50)not null,
+usuario_pai_id bigint not null,
+usuario_cad_id bigint not null,
+	
+constraint telefone_pkey primary key (id),
+constraint usuario_pai_fk foreign key (usuario_pai_id) references model_login (id),
+constraint usuario_cad_fk foreign key (usuario_cad_id) references model_login (id)
+)
+
+================================================================================
 
 
 

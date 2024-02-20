@@ -22,13 +22,15 @@ public class DAOTelefoneRepository {
 		
 	}	
 	
-	public List<ModelTelefone> listaFone(Long idUserPai) throws Exception{
+	public List<ModelTelefone> listFone(Long idUserPai) throws Exception{
 		
 		List<ModelTelefone> retorno = new ArrayList<ModelTelefone>();
 		
 		String sql = "select * from telefone where usuario_pai_id = ?";
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		
+		preparedStatement.setLong(1, idUserPai);
 		
 		ResultSet rs = preparedStatement.executeQuery();
 		
@@ -66,11 +68,11 @@ public class DAOTelefoneRepository {
 	}
 	
 	public void deleteFone (Long id) throws Exception {
-		String sql = "delete form telefone whee id =?";
+		String sql = "delete from telefone where id =?";
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				
-		preparedStatement.setLong(3, id);
+		preparedStatement.setLong(1, id);
 		
 		preparedStatement.execute();
 		
