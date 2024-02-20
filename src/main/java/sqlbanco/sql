@@ -190,7 +190,8 @@ constraint usuario_cad_fk foreign key (usuario_cad_id) references model_login (i
 )
 
 ================================================================================
-
+-- CRIAR TABELA RENDAMENSAL
+alter table model_login add column rendamensal numeric (6,3);
 
 
 

@@ -23,7 +23,7 @@ public class DAOUsuarioRepository {
 		
 		if (objeto.isNovo()) {/*Grava um novo*/
 		
-		String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, perfil, sexo, cep, logradouro, bairro, localidade, uf, numero, dataNascimento)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, perfil, sexo, cep, logradouro, bairro, localidade, uf, numero, dataNascimento, rendamensal)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement preparedSql = connection.prepareStatement(sql);
 		
 		preparedSql.setString(1, objeto.getLogin());
@@ -41,6 +41,7 @@ public class DAOUsuarioRepository {
 		preparedSql.setString(12, objeto.getUf());
 		preparedSql.setString(13, objeto.getNumero());
 		preparedSql.setDate(14, objeto.getDataNascimento());
+		preparedSql.setDouble(15, objeto.getRendamensal());
 		
 		
 		preparedSql.execute();
@@ -63,7 +64,7 @@ public class DAOUsuarioRepository {
 			}
 		
 		}else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=?, cep=?, logradouro=?, bairro =?, localidade=?, uf=?, numero =?, datanascimento=? WHERE id =  "+objeto.getId()+";";
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=?, cep=?, logradouro=?, bairro =?, localidade=?, uf=?, numero =?, datanascimento=?, rendamensal=? WHERE id =  "+objeto.getId()+";";
 			
 			PreparedStatement prepareSql = connection.prepareStatement(sql);
 			
@@ -81,6 +82,7 @@ public class DAOUsuarioRepository {
 			prepareSql.setString(11, objeto.getUf());
 			prepareSql.setString(12, objeto.getNumero());
 			prepareSql.setDate(13, objeto.getDataNascimento());
+			prepareSql.setDouble(14, objeto.getRendamensal());
 			
 			prepareSql.executeUpdate();
 			
@@ -301,26 +303,28 @@ resultado.next();
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resuLtado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resuLtado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
-			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
-			modelLogin.setPerfil(resutlado.getString("perfil"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
+			modelLogin.setId(resuLtado.getLong("id"));
+			modelLogin.setEmail(resuLtado.getString("email"));
+			modelLogin.setLogin(resuLtado.getString("login"));
+			modelLogin.setSenha(resuLtado.getString("senha"));
+			modelLogin.setNome(resuLtado.getString("nome"));
+			modelLogin.setUseradmin(resuLtado.getBoolean("useradmin"));
+			modelLogin.setPerfil(resuLtado.getString("perfil"));
+			modelLogin.setSexo(resuLtado.getString("sexo"));
+			modelLogin.setFotouser(resuLtado.getString("fotouser"));
 			
-			modelLogin.setCep(resutlado.getString("cep"));
-			modelLogin.setLogradouro(resutlado.getString("logradouro"));
-			modelLogin.setBairro(resutlado.getString("bairro"));
-			modelLogin.setLocalidade(resutlado.getString("localidade"));
-			modelLogin.setUf(resutlado.getString("uf"));
-			modelLogin.setNumero(resutlado.getString("numero"));
+			modelLogin.setCep(resuLtado.getString("cep"));
+			modelLogin.setLogradouro(resuLtado.getString("logradouro"));
+			modelLogin.setBairro(resuLtado.getString("bairro"));
+			modelLogin.setLocalidade(resuLtado.getString("localidade"));
+			modelLogin.setUf(resuLtado.getString("uf"));
+			modelLogin.setNumero(resuLtado.getString("numero"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
 		}
 		
 		
@@ -339,25 +343,28 @@ resultado.next();
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resuLtado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resuLtado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
-			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
-			modelLogin.setPerfil(resutlado.getString("perfil"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
-			modelLogin.setCep(resutlado.getString("cep"));
-			modelLogin.setLogradouro(resutlado.getString("logradouro"));
-			modelLogin.setBairro(resutlado.getString("bairro"));
-			modelLogin.setLocalidade(resutlado.getString("localidade"));
-			modelLogin.setUf(resutlado.getString("uf"));
-			modelLogin.setNumero(resutlado.getString("numero"));
+			modelLogin.setId(resuLtado.getLong("id"));
+			modelLogin.setEmail(resuLtado.getString("email"));
+			modelLogin.setLogin(resuLtado.getString("login"));
+			modelLogin.setSenha(resuLtado.getString("senha"));
+			modelLogin.setNome(resuLtado.getString("nome"));
+			modelLogin.setUseradmin(resuLtado.getBoolean("useradmin"));
+			modelLogin.setPerfil(resuLtado.getString("perfil"));
+			modelLogin.setSexo(resuLtado.getString("sexo"));
+			modelLogin.setFotouser(resuLtado.getString("fotouser"));
+			modelLogin.setCep(resuLtado.getString("cep"));
+			modelLogin.setLogradouro(resuLtado.getString("logradouro"));
+			modelLogin.setBairro(resuLtado.getString("bairro"));
+			modelLogin.setLocalidade(resuLtado.getString("localidade"));
+			modelLogin.setUf(resuLtado.getString("uf"));
+			modelLogin.setNumero(resuLtado.getString("numero"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
+			
 		}
 		
 		
@@ -375,24 +382,26 @@ resultado.next();
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resuLtado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resuLtado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
-			modelLogin.setPerfil(resutlado.getString("perfil"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
-			modelLogin.setCep(resutlado.getString("cep"));
-			modelLogin.setLogradouro(resutlado.getString("logradouro"));
-			modelLogin.setBairro(resutlado.getString("bairro"));
-			modelLogin.setLocalidade(resutlado.getString("localidade"));
-			modelLogin.setUf(resutlado.getString("uf"));
-			modelLogin.setNumero(resutlado.getString("numero"));
+			modelLogin.setId(resuLtado.getLong("id"));
+			modelLogin.setEmail(resuLtado.getString("email"));
+			modelLogin.setLogin(resuLtado.getString("login"));
+			modelLogin.setSenha(resuLtado.getString("senha"));
+			modelLogin.setNome(resuLtado.getString("nome"));
+			modelLogin.setPerfil(resuLtado.getString("perfil"));
+			modelLogin.setSexo(resuLtado.getString("sexo"));
+			modelLogin.setFotouser(resuLtado.getString("fotouser"));
+			modelLogin.setCep(resuLtado.getString("cep"));
+			modelLogin.setLogradouro(resuLtado.getString("logradouro"));
+			modelLogin.setBairro(resuLtado.getString("bairro"));
+			modelLogin.setLocalidade(resuLtado.getString("localidade"));
+			modelLogin.setUf(resuLtado.getString("uf"));
+			modelLogin.setNumero(resuLtado.getString("numero"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
 		}
 		
 		
@@ -410,25 +419,27 @@ resultado.next();
 		statement.setLong(1, id);
 	
 		
-		ResultSet resutlado =  statement.executeQuery();
+		ResultSet resultado =  statement.executeQuery();
 		
-		while (resutlado.next()) /*Se tem resultado*/ {
+		while (resultado.next()) /*Se tem resultado*/ {
 			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
-			modelLogin.setPerfil(resutlado.getString("perfil"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
-			modelLogin.setExtensaofotouser(resutlado.getString("extensaofotouser"));
-			modelLogin.setCep(resutlado.getString("cep"));
-			modelLogin.setLogradouro(resutlado.getString("logradouro"));
-			modelLogin.setBairro(resutlado.getString("bairro"));
-			modelLogin.setLocalidade(resutlado.getString("localidade"));
-			modelLogin.setUf(resutlado.getString("uf"));
-			modelLogin.setNumero(resutlado.getString("numero"));
+			modelLogin.setId(resultado.getLong("id"));
+			modelLogin.setEmail(resultado.getString("email"));
+			modelLogin.setLogin(resultado.getString("login"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setNome(resultado.getString("nome"));
+			modelLogin.setPerfil(resultado.getString("perfil"));
+			modelLogin.setSexo(resultado.getString("sexo"));
+			modelLogin.setFotouser(resultado.getString("fotouser"));
+			modelLogin.setExtensaofotouser(resultado.getString("extensaofotouser"));
+			modelLogin.setCep(resultado.getString("cep"));
+			modelLogin.setLogradouro(resultado.getString("logradouro"));
+			modelLogin.setBairro(resultado.getString("bairro"));
+			modelLogin.setLocalidade(resultado.getString("localidade"));
+			modelLogin.setUf(resultado.getString("uf"));
+			modelLogin.setNumero(resultado.getString("numero"));
+			modelLogin.setDataNascimento(resultado.getDate("datenascimento"));
+			modelLogin.setRendamensal(resultado.getDouble("rendamensal"));
 		}
 		
 		

@@ -112,6 +112,14 @@
 															
 															
 															<div class="form-group form-default form-static-label">
+																<input type="date" name="rendamensal" id="rendamensal"
+																	class="form-control" required="required"
+																	value="${modolLogin.rendamensal }"> <span
+																	class="form-bar"></span> <label class="float-label">Renda Mensal:</label>
+															</div>
+															
+															
+															<div class="form-group form-default form-static-label">
 																<input type="email" name="email" id="email"
 																	class="form-control" required="required"
 																	autocomplete="off" value="${modolLogin.email }">
@@ -398,6 +406,10 @@
 	
 
 <script type="text/javascript">
+
+/* =====MASCARA MONETARIA===== */
+
+${"#rendamensal"}.maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
 
 
 /*   ===CALENDARIO===   */
