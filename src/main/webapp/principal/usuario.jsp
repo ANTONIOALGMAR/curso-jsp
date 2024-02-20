@@ -388,9 +388,23 @@
 	</div>
 	
 
-	<script type="text/javascript">
+<script type="text/javascript">
+
+
+
+/* ======FUNCAO PARA ACEITAR SO NUMERO====== */
+
+${"#numero"}.keypress(function(event){
+	return /\d/.test(String.fromCharCode(event.keyCode));
+});
+
+${"#cep"}.keypress(function(event){
+	return /\d/.test(String.fromCharCode(event.keyCode));
+});
 	
-	
+
+
+
 function pesquisarCep(){
 	var cep = $("#cep").val();
 	
