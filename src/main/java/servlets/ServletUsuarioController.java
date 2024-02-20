@@ -193,7 +193,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("dd-mm-yyyy").parse(dataNascimento).getTime()));
 			modelLogin.setRendamensal(Double.valueOf(rendamensal));
 			
-			rendamensal = rendamensal.split("\\ ")[1].replaceAll("\\,", "");
+			rendamensal = rendamensal.split("\\ ")[1].replaceAll("\\.", "").replaceAll("\\,", ".");
 			
 			if (ServletFileUpload.isMultipartContent(request)) {
 				
