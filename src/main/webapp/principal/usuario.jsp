@@ -104,15 +104,14 @@
 															</div>
 															
 															<div class="form-group form-default form-static-label">
-																<input type="date" name="dataNascimento" id="dataNascimento"
-																	class="form-control" required="required"
-																	value="${modolLogin.dataNascimento }"> <span
-																	class="form-bar"></span> <label class="float-label">Dat. NAascimento:</label>
-															</div>
+                                                                <input type="text" name="dataNascimento" id="dataNascimento" class="form-control" required="required" value="${modolLogin.dataNascimento}">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Dat. Nascimento:</label>
+                                                            </div>
 															
 															
 															<div class="form-group form-default form-static-label">
-																<input type="date" name="rendamensal" id="rendamensal"
+																<input type="text" name="rendamensal" id="rendamensal"
 																	class="form-control" required="required"
 																	value="${modolLogin.rendamensal }"> <span
 																	class="form-bar"></span> <label class="float-label">Renda Mensal:</label>
@@ -409,7 +408,26 @@
 
 /* =====MASCARA MONETARIA===== */
 
-${"#rendamensal"}.maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
+$("#rendamensal").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
+
+const formatter = new Intl.NumberFormat('pt-BR', {
+    currency : 'BRL',
+    minimumFractionDigits : 2
+});
+
+$("#rendamensal").val(formatter.format($("#rendamensal").val()));
+
+$("#rendamensal").focus();
+
+var dataNascimento = $("#dataNascimento").val();
+
+var dateFormat = new Date(dataNascimento);
+
+$("#dataNascimento").val(dateFormat.toLocaleDateString('pt-BR',{timeZone: 'UTC'}));
+
+$("#nome").focus();
+
+
 
 
 /*   ===CALENDARIO===   */
@@ -432,11 +450,11 @@ $( function() {
 
 /* ======FUNCAO PARA ACEITAR SO NUMERO====== */
 
-${"#numero"}.keypress(function(event){
+$("#numero").keypress(function(event){
 	return /\d/.test(String.fromCharCode(event.keyCode));
 });
 
-${"#cep"}.keypress(function(event){
+$("#cep").keypress(function(event){
 	return /\d/.test(String.fromCharCode(event.keyCode));
 });
 	

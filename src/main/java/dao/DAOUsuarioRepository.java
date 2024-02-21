@@ -323,7 +323,7 @@ resultado.next();
 			modelLogin.setLocalidade(resuLtado.getString("localidade"));
 			modelLogin.setUf(resuLtado.getString("uf"));
 			modelLogin.setNumero(resuLtado.getString("numero"));
-			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datanascimento"));
 			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
 		}
 		
@@ -362,7 +362,7 @@ resultado.next();
 			modelLogin.setLocalidade(resuLtado.getString("localidade"));
 			modelLogin.setUf(resuLtado.getString("uf"));
 			modelLogin.setNumero(resuLtado.getString("numero"));
-			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datanascimento"));
 			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
 			
 		}
@@ -400,7 +400,7 @@ resultado.next();
 			modelLogin.setLocalidade(resuLtado.getString("localidade"));
 			modelLogin.setUf(resuLtado.getString("uf"));
 			modelLogin.setNumero(resuLtado.getString("numero"));
-			modelLogin.setDataNascimento(resuLtado.getDate("datenascimento"));
+			modelLogin.setDataNascimento(resuLtado.getDate("datanascimento"));
 			modelLogin.setRendamensal(resuLtado.getDouble("rendamensal"));
 		}
 		
@@ -438,7 +438,7 @@ resultado.next();
 			modelLogin.setLocalidade(resultado.getString("localidade"));
 			modelLogin.setUf(resultado.getString("uf"));
 			modelLogin.setNumero(resultado.getString("numero"));
-			modelLogin.setDataNascimento(resultado.getDate("datenascimento"));
+			modelLogin.setDataNascimento(resultado.getDate("datanascimento"));
 			modelLogin.setRendamensal(resultado.getDouble("rendamensal"));
 		}
 		
@@ -477,6 +477,7 @@ resultado.next();
 			modelLogin.setLocalidade(resutlado.getString("localidade"));
 			modelLogin.setUf(resutlado.getString("uf"));
 			modelLogin.setNumero(resutlado.getString("numero"));
+			
 		}
 		
 		

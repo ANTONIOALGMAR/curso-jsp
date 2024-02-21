@@ -172,7 +172,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 			String dataNascimento = request.getParameter("dataNascimento");
 			String rendamensal = request.getParameter("rendamensal");
 			
-			rendamensal = rendamensal.replaceAll("\\,", "").replaceAll("R$ ", "");
+			rendamensal = rendamensal.split("\\ ")[0].replaceAll("\\.", "").replaceAll("\\,", ".");
 
 			ModelLogin modelLogin = new ModelLogin();
 
@@ -190,10 +190,9 @@ public class ServletUsuarioController extends servletGenercUtil {
 			modelLogin.setBairro(bairro);
 			modelLogin.setLocalidade(localidade);
 			modelLogin.setUf(uf);
-			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("dd-mm-yyyy").parse(dataNascimento).getTime()));
+			modelLogin.setDataNascimento(new Date(new SimpleDateFormat("dd/mm/yy").parse(dataNascimento).getTime()));
 			modelLogin.setRendamensal(Double.valueOf(rendamensal));
 			
-			rendamensal = rendamensal.split("\\ ")[1].replaceAll("\\.", "").replaceAll("\\,", ".");
 			
 			if (ServletFileUpload.isMultipartContent(request)) {
 				
