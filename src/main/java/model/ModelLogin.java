@@ -204,4 +204,9 @@ public class ModelLogin implements Serializable {
 		this.senha = senha;
 	}
 
+	public void setTelefones(Object listFone) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

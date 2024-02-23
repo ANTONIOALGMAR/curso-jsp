@@ -5,6 +5,10 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
@@ -16,10 +20,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import model.ModelLogin;
-import org.apache.commons.io.IOUtils;
-
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 @MultipartConfig
 @WebServlet(urlPatterns = {"/UsuarioController"})
@@ -127,6 +127,27 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 }
 				 
 			 }
+			 
+			 else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioUser")) {
+				 
+				 String dataInicial = request.getParameter("dataInicial");
+				 String dataFinal = request.getParameter("dataFinal");
+				 
+				
+				 if (dataInicial == null || dataInicial.isEmpty() 
+						 && dataFinal == null || dataFinal.isEmpty()) {
+					 
+					 request.setAttribute("listaUser", daoUsuarioRepository.consultaUsuarioListRel(super.getUserLogado(request)));
+					 
+				 } 
+				 
+				 
+				 request.setAttribute("dataInicial", dataInicial);
+				 request.setAttribute("dataFinal", dataFinal);
+				 request.getRequestDispatcher("principal/reluser.jsp").forward(request, response);
+				 
+			 }
+			 
 			 else {
 				 
 				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
