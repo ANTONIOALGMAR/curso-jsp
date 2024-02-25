@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import model.ModelLogin;
+import util.ReportUtil;
 
 @MultipartConfig
 @WebServlet(urlPatterns = {"/UsuarioController"})
@@ -111,7 +112,7 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 ModelLogin modelLogin = daoUsuarioRepository.consultaUsuario(idUser, super.getUserLogado(request));
 				 if (modelLogin.getFotouser() != null && !modelLogin.getFotouser().isEmpty()) {
 					 
-					 response.setHeader("Content-Disposition", "attachment;filename=arquivo." + modelLogin.getExtensaoFotouser());
+					 response.setHeader("Content-Disposition", "attachment;filename=arquivo.pdf" + modelLogin.getExtensaoFotouser());
 					 response.getOutputStream().write(new Base64().decodeBase64(modelLogin.getFotouser().split("\\,")[1]));
 					 
 				 }
@@ -150,6 +151,29 @@ public class ServletUsuarioController extends servletGenercUtil {
 				 request.setAttribute("dataFinal", dataFinal);
 				 request.getRequestDispatcher("principal/reluser.jsp").forward(request, response);
 				 
+			 }
+			 
+			 else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("imprimirRelatorioPDF")) {
+				 
+				 String dataInicial = request.getParameter("dataInicial");
+				 String dataFinal = request.getParameter("dataFinal");
+
+				 List<ModelLogin> modelLogins = null;	 
+				 
+				 if (dataInicial == null || dataInicial.isEmpty() 
+						 && dataFinal == null || dataFinal.isEmpty()) {
+				 
+					 modelLogins = daoUsuarioRepository.consultaUsuarioListRel(super.getUserLogado(request));
+				 
+				 }else {
+					 modelLogins = daoUsuarioRepository.consultaUsuarioListRel(super.getUserLogado(request), dataInicial, dataFinal);
+					 
+				 }
+				 
+				 byte[] relatorio = new ReportUtil().gerarRelatorioPDF(modelLogins, "rel-user-jsp", request.getServletContext());
+				 
+				 response.setHeader("Content-Disposition", "attachment;filename=arquivo.pdf");
+				 response.getOutputStream().write(relatorio);
 			 }
 			 
 			 else {

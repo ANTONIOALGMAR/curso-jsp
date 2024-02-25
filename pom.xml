@@ -59,9 +59,9 @@
 		
 		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
-    		<groupId>net.sf.jasperreports</groupId>
-    		<artifactId>jasperreports</artifactId>
-    		<version>6.21.2</version>
+  			<groupId>net.sf.jasperreports</groupId>
+  			<artifactId>jasperreports</artifactId>
+  			<version>6.18.1</version>
 		</dependency>
 		
 	</dependencies>
